@@ -8,11 +8,12 @@ def part2(data):
     # TODO: resolver parte 2
     return None
 
-def load_input():
-    filename = Path("input.txt")
+def load_input(day):
+    filename = Path(f"d{day}/input.txt")
     return filename.read_text().strip().splitlines()
 
 if __name__ == "__main__":
-    data = load_input()
+    day = 1
+    data = load_input(day)
     print("Part 1:", part1(data))
     print("Part 2:", part2(data))
