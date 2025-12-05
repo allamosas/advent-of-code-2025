@@ -3,20 +3,18 @@ from pathlib import Path
 def part1(data):
     pos = 50
     count = 0
-    
+
     for instruction in data:
-        dir = instruction[0]
+        direction = instruction[0]
         value = int(instruction[1:])
-        if dir =='R':
-            pos += value
 
-        if dir =='L':
-            pos -= value
-
-        pos = pos % 100
-        
+        if direction == 'R':
+            pos = (pos + value) % 100
+        elif direction == 'L':
+            pos = (pos - value) % 100
         if pos == 0:
             count += 1
+
     return count
 
 def part2(data):
@@ -24,29 +22,27 @@ def part2(data):
     count = 0
 
     for instruction in data:
-        dir = instruction[0]
+        direction = instruction[0]
         value = int(instruction[1:])
-        if dir =='R':
-            for step in range(value):
-                pos += 1
-                pos = pos % 100
-                if pos == 0:
-                    count += 1
 
-        if dir =='L':
-            for step in range(value):
-                pos -= 1
-                pos = pos % 100
-                if pos == 0:
-                    count += 1
+        if direction == 'R':
+            count += (pos + value) // 100
+            pos = (pos + value) % 100
+        elif direction == 'L':
+            if pos == 0:
+                count += value // 100
+            elif value >= pos:
+                count += 1 + (value - pos) // 100
+            pos = (pos - value) % 100
 
     return count
 
-def load_input():
-    filename = Path("input.txt")
+def load_input(day):
+    filename = Path(f"d{day}/input.txt")
     return filename.read_text().strip().splitlines()
 
 if __name__ == "__main__":
-    data = load_input()
+    day = 1
+    data = load_input(day)
     print("Part 1:", part1(data))
     print("Part 2:", part2(data))
