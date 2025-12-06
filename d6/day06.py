@@ -32,7 +32,6 @@ def translate_sunormal(grid): # Traducir los caracteres sunormales a operadores 
         translated_grid.append(t_row)
     return translated_grid
 
-
 def sum_up(grid):
     total = 0
     for row in grid: 
