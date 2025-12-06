@@ -1,5 +1,6 @@
 from pathlib import Path
 from intervaltree import IntervalTree, Interval
+import time
 
 def part1(data):
     empty_line = data.index('')
@@ -35,7 +36,9 @@ def load_input(day):
     return filename.read_text().strip().splitlines()
 
 if __name__ == "__main__":
+    start_time = time.time()
     day = 5
     data = load_input(day)
     print("Part 1:", part1(data))
     print("Part 2:", part2(data))
+    print("Process finished --- %s seconds ---" % (time.time() - start_time))
