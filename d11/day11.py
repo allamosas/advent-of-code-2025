@@ -14,7 +14,7 @@ from functools import lru_cache
 
 def part1(data):
     exits = 0
-    for value in data['you']:  # antes 'svr'
+    for value in data['you']:
         exits += search_tree(data, value)
     return exits
 
